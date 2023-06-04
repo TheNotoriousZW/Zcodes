@@ -1,3 +1,0 @@
-new.py
-error_city.py
-.gitignore
