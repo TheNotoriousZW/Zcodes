@@ -1,7 +1,1 @@
-error_city.py
-filestudy.py
-.gitignore
-git.py
-lamb-map-filter.py
-ord-and-chr.py
-TimeLord.py
+*.py
