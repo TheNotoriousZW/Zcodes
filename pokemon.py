@@ -19,31 +19,41 @@ while True:
     while info.status_code != 200:
         print(f"Pokemon name isnt valid try again")
         search = input(Fore.CYAN + "Enter Pokemon Name: ")
+        print(type(search))
+        if type(search) == None:
+            search = input(Fore.CYAN + "Enter Pokemon Name: ")
         while search.isdigit():
             search = input(Fore.CYAN + "Enter Pokemon Name: ")
         info = requests.get(f"https://pokeapi.co/api/v2/pokemon/{search}")
     #Error management
-    info = info.json()
-    #Turns info into a python dictionairy so we can get data
+    try:
+        info = info.json()
+        # Turns info into a python dictionairy so we can get data
+
+        abilities = info.get('abilities')
+        type = info.get('types')
+        # print(info)
+        weight = info.get('weight')
+
+        ability = [dict(abilities[0]), dict(abilities[1])]
+        powers = (ability[0]['ability']['name'], ability[1]['ability']['name'])
+        height = info.get('height')
+        poke_type = type[0]['type']['name']
+        weight = info.get('weight')
+        stats = info.get('stats')
+    except TypeError:
+        search = input(f"{Fore.MAGENTA} Enter Pokemon Name: ")
+    else:
+        print(f"Height -- {height}in\n")
+        print(f"Weight -- {weight}\n")
+        print(f"{search} is a {poke_type} type\n")
+        print(f"{search} has {powers} abilities\n")
 
 
-    abilities = info.get('abilities')
-    type = info.get('types')
-    # print(info)
-    weight = info.get('weight')
 
-    ability = [dict(abilities[0]), dict(abilities[1])]
-    powers = (ability[0]['ability']['name'], ability[1]['ability']['name'])
-    height = info.get('height')
-    poke_type = type[0]['type']['name']
-    weight = info.get('weight')
-    stats = info.get('stats')
     # print(stats)
     #Grabbing data from Nested dictionairies
 
-    print(f"Height -- {height}in\n")
-    print(f"Weight -- {weight}\n")
-    print(f"{search} is a {poke_type} type\n")
-    print(f"{search} has {powers} abilities\n")
+
 
 
