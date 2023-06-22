@@ -19,9 +19,6 @@ while True:
     while info.status_code != 200:
         print(f"Pokemon name isnt valid try again")
         search = input(Fore.CYAN + "Enter Pokemon Name: ")
-        print(type(search))
-        if type(search) == None:
-            search = input(Fore.CYAN + "Enter Pokemon Name: ")
         while search.isdigit():
             search = input(Fore.CYAN + "Enter Pokemon Name: ")
         info = requests.get(f"https://pokeapi.co/api/v2/pokemon/{search}")
